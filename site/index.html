@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>OpenEchelon — a model-agnostic runtime for structured AI organizations</title>
+<meta name="description" content="OpenEchelon is an open-source runtime for hierarchical AI agent organizations. Persistent AI employees with defined authority, permissions, memory, and reasoning budgets, routed across local and frontier models by a quota-aware Resource Governor. You talk to the CEO.">
+<link rel="canonical" href="https://name0x0.github.io/OpenEchelon/">
+<meta name="author" content="OpenEchelon Contributors">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OpenEchelon">
+<meta property="og:title" content="OpenEchelon — the operating system for AI organizations">
+<meta property="og:description" content="A model-agnostic runtime for hierarchical AI agent organizations. Persistent employees, delegated authority, governed resources, auditable decisions.">
+<meta property="og:url" content="https://name0x0.github.io/OpenEchelon/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OpenEchelon — the operating system for AI organizations">
+<meta name="twitter:description" content="A model-agnostic runtime for hierarchical AI agent organizations. Persistent employees, delegated authority, governed resources, auditable decisions.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%9B%EF%B8%8F%3C/text%3E%3C/svg%3E">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "OpenEchelon",
+  "alternateName": "OpenEchelon runtime for AI organizations",
+  "description": "A model-agnostic runtime for structured AI organizations where persistent agents operate within hierarchy, authority, resource, memory, and information boundaries while reporting ultimately to a human owner.",
+  "codeRepository": "https://github.com/NAME0x0/OpenEchelon",
+  "url": "https://name0x0.github.io/OpenEchelon/",
+  "programmingLanguage": "Python",
+  "license": "https://www.apache.org/licenses/LICENSE-2.0",
+  "author": { "@type": "Organization", "name": "OpenEchelon Contributors" },
+  "keywords": "AI agents, multi-agent systems, agent orchestration, LLM orchestration, hierarchical agents, model-agnostic, local LLM, autonomous agents, AI organization",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Cross-platform"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is OpenEchelon?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "OpenEchelon is an open-source, model-agnostic runtime for structured AI organizations. It models a hierarchy of AI agents — CEO, executives, directors, managers, specialists, and workers — where each agent has a defined role, manager, permissions, memory, reasoning budget, and reporting line. The human owner gives an objective to the CEO and retains final authority over everything the organization does."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is OpenEchelon different from a multi-agent swarm?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A swarm is flat: one lead agent fans work out to peer agents, usually sharing one context and one model. OpenEchelon is hierarchical, and the hierarchy carries operational meaning — information access, permissions, reasoning budgets, escalation paths, and model tier all vary by rank. In a flat swarm, ten agents on one problem tends to mean ten expensive contexts reasoning about the same thing. In OpenEchelon a worker gets a bounded assignment on a cheap model, and only the levels that need judgement pay for judgement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a thousand AI agents mean a thousand running models?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Logical identity is deliberately separated from execution. A logical employee exists persistently without a dedicated model process, container, GPU allocation, or running session. A thousand registered employees might mean fifty assigned and twenty actively executing against a limited pool, and one loaded local model can serve hundreds of logical workers over time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which AI models and providers does OpenEchelon require?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "None. Local inference (Ollama, llama.cpp, OpenAI-compatible servers), CLI coding agents (Codex CLI, Claude Code, Gemini and Antigravity), and hosted APIs all sit behind adapters. OpenEchelon is designed to run meaningfully in a local-only configuration; cloud and frontier resources enhance capability but do not define the architecture."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does OpenEchelon decide which model runs a task?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Resource Governor assigns execution resources per task. It starts with the cheapest intelligence that could plausibly succeed and escalates when a sufficiency estimator judges the answer inadequate. Inputs include task complexity and importance, uncertainty and risk, remaining provider quota and reset windows, latency, local hardware availability, historical success rates, cost, concurrency, and organizational rank."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is OpenEchelon usable today?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not yet. It is pre-alpha. The Phase 0 organizational data model and a Resource Governor spike exist and are tested; there is no organization runtime and no released package."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --bg:#0d0f12; --panel:#14171c; --line:#242a33;
+  --fg:#e6e9ee; --muted:#98a1b0; --dim:#6c7686;
+  --accent:#7dd3a0; --accent-dim:#3f6b52; --warn:#e0a35c;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#fbfbf9; --panel:#ffffff; --line:#e2e4e0;
+    --fg:#16191d; --muted:#525a66; --dim:#7b8593;
+    --accent:#1c7a4b; --accent-dim:#a8d8bf; --warn:#9a6212;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--sans); font-size:16px; line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:940px;margin:0 auto;padding:0 24px}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:currentColor}
+
+header{border-bottom:1px solid var(--line);padding:72px 0 56px;background:
+  radial-gradient(1100px 340px at 50% -140px, color-mix(in srgb, var(--accent) 9%, transparent), transparent);}
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dim);margin:0 0 18px
+}
+h1{font-size:clamp(34px,6vw,54px);line-height:1.08;margin:0 0 20px;letter-spacing:-.02em;font-weight:640}
+h1 .thin{color:var(--muted);font-weight:400}
+.lede{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:64ch;margin:0 0 28px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px}
+.badge{
+  font-family:var(--mono);font-size:12px;padding:4px 10px;border-radius:999px;
+  border:1px solid var(--line);color:var(--muted);background:var(--panel)
+}
+.badge.live{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 40%,transparent)}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{
+  display:inline-block;padding:11px 20px;border-radius:8px;font-weight:560;font-size:15px;
+  border:1px solid var(--line);background:var(--panel);color:var(--fg)
+}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.08);color:var(--bg)}
+
+section{padding:60px 0;border-bottom:1px solid var(--line)}
+h2{font-size:clamp(22px,3.4vw,30px);margin:0 0 8px;letter-spacing:-.015em;font-weight:620}
+h2 + .sub{color:var(--dim);margin:0 0 28px;font-size:15px}
+h3{font-size:17px;margin:0 0 8px;font-weight:600}
+p{margin:0 0 16px;max-width:72ch}
+
+pre{
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  padding:20px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.5;
+  color:var(--muted);margin:0 0 24px
+}
+code{font-family:var(--mono);font-size:.9em;color:var(--fg)}
+
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{border:1px solid var(--line);border-radius:10px;padding:20px;background:var(--panel)}
+.card p{color:var(--muted);font-size:14.5px;margin:0}
+.card .n{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.1em;display:block;margin-bottom:10px}
+
+.tablewrap{overflow-x:auto;margin:0 0 24px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:520px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);font-weight:600}
+td:first-child{color:var(--muted)}
+tbody tr:last-child td{border-bottom:none}
+
+details{border:1px solid var(--line);border-radius:10px;background:var(--panel);margin:0 0 10px}
+summary{padding:15px 18px;cursor:pointer;font-weight:560;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;color:var(--dim);font-family:var(--mono)}
+details[open] summary::after{content:"\2212"}
+details > div{padding:0 18px 18px;color:var(--muted);font-size:15px}
+details > div p{margin:0 0 12px}
+details > div p:last-child{margin:0}
+
+.note{border-left:2px solid var(--accent-dim);padding:2px 0 2px 18px;color:var(--muted);font-size:15px;margin:0 0 20px}
+
+footer{padding:44px 0 64px;color:var(--dim);font-size:14px}
+footer a{color:var(--muted)}
+.foot-links{display:flex;flex-wrap:wrap;gap:18px;margin:0 0 22px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Open source &middot; Apache-2.0 &middot; Pre-alpha</p>
+    <h1>OpenEchelon<br><span class="thin">the operating system for AI organizations</span></h1>
+    <p class="lede">
+      A <strong>model-agnostic runtime for structured AI organizations</strong> — hierarchical
+      multi-agent systems where persistent AI employees operate within defined authority,
+      permission, memory, and resource boundaries, and report ultimately to a human owner.
+    </p>
+    <div class="badges">
+      <span class="badge live">Status: pre-alpha</span>
+      <span class="badge">Apache-2.0</span>
+      <span class="badge">Python 3.12+</span>
+      <span class="badge">Local-first</span>
+      <span class="badge">Provider-independent</span>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/NAME0x0/OpenEchelon">View on GitHub</a>
+      <a class="btn" href="https://github.com/NAME0x0/OpenEchelon/blob/main/docs/principles.md">Read the principles</a>
+      <a class="btn" href="#faq">FAQ</a>
+    </div>
+  </div>
+</header>
+
+<section id="idea">
+  <div class="wrap">
+    <h2>You talk to the CEO. The organization handles the rest.</h2>
+    <p class="sub">Complexity belongs inside the organization, not in the user's lap.</p>
+    <p>
+      Most multi-agent systems expose their complexity directly. You choose agents, wire workflows,
+      select models, coordinate handoffs, and decide which agent does what. OpenEchelon models an
+      actual organization instead: executives, directors, managers, specialists, and workers, each
+      with defined responsibilities, authority, tools, memory, budgets, and reporting lines.
+    </p>
+<pre>                         YOU
+                          |
+                          v
+                         CEO
+                          |
+            +-------------+-------------+
+            |             |             |
+            v             v             v
+           CTO           CRO           CQO
+            |             |             |
+            v             v             v
+        Directors     Directors     Directors
+            |             |             |
+            v             v             v
+         Managers      Managers      Managers
+            |             |             |
+            v             v             v
+         Workers       Workers       Workers</pre>
+    <p>
+      The CEO receives the objective, delegates through the organization, monitors progress,
+      resolves conflicts, commissions reviews, manages scarce model resources, and returns the
+      consolidated result.
+    </p>
+  </div>
+</section>
+
+<section id="difference">
+  <div class="wrap">
+    <h2>Hierarchy, not swarm</h2>
+    <p class="sub">The difference is operational, not cosmetic.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th></th><th>Flat multi-agent swarm</th><th>OpenEchelon</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Structure</td><td>Lead plus peer agents</td><td>Multi-level organization with departments</td></tr>
+          <tr><td>Context</td><td>Often one shared context</td><td>Minimum sufficient context per role</td></tr>
+          <tr><td>Model choice</td><td>Usually one provider for all agents</td><td>Per-task assignment by a Resource Governor</td></tr>
+          <tr><td>Reasoning</td><td>Frequently maximized everywhere</td><td>Budgeted by rank and task requirement</td></tr>
+          <tr><td>Identity</td><td>Agent equals prompt plus model</td><td>Persistent employee with history and performance record</td></tr>
+          <tr><td>Scaling</td><td>More agents means more running models</td><td>Logical identity scales separately from execution</td></tr>
+          <tr><td>Escalation</td><td>Retry the same agent</td><td>Structured escalation to a stronger resource</td></tr>
+          <tr><td>Audit</td><td>Conversation history</td><td>Traceable task tree with artifacts and reviews</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">
+      In a flat swarm, ten agents on one problem tends to mean ten expensive contexts reasoning
+      about the same thing. Orchestrator-worker systems buy their quality with roughly an order of
+      magnitude more tokens than a single agent, and that multiplier compounds through every
+      handoff. OpenEchelon treats that as the problem to solve, not the price of admission.
+    </p>
+  </div>
+</section>
+
+<section id="principles">
+  <div class="wrap">
+    <h2>What holds it together</h2>
+    <p class="sub">Forty architectural constraints. Six that decide the shape.</p>
+    <div class="grid">
+      <div class="card">
+        <span class="n">PRINCIPLE 2</span>
+        <h3>Human authority is final</h3>
+        <p>The organization never structurally places itself above its owner. Autonomy exists within delegated authority; it is not sovereignty.</p>
+      </div>
+      <div class="card">
+        <span class="n">PRINCIPLE 4</span>
+        <h3>Agents are not models</h3>
+        <p>An employee is a persistent identity with a role, manager, permissions, memory, and performance history. Execution resources are assigned per task.</p>
+      </div>
+      <div class="card">
+        <span class="n">PRINCIPLE 5</span>
+        <h3>Identity scales past execution</h3>
+        <p>A thousand registered employees might mean twenty actively executing. One loaded local model can serve hundreds of logical workers over time.</p>
+      </div>
+      <div class="card">
+        <span class="n">PRINCIPLE 8</span>
+        <h3>Cheapest sufficient intelligence</h3>
+        <p>Work starts on local or inexpensive models and escalates only when the attempt proves insufficient — because it is justified, not because a powerful model happens to be available.</p>
+      </div>
+      <div class="card">
+        <span class="n">PRINCIPLE 14</span>
+        <h3>Managers compress context</h3>
+        <p>Raw worker output does not propagate upward unchanged. Reports keep references to underlying evidence so deeper inspection stays possible.</p>
+      </div>
+      <div class="card">
+        <span class="n">PRINCIPLE 35</span>
+        <h3>Security is architectural</h3>
+        <p>Prompt injection, authority escalation, information boundaries, credential isolation, and approval gates are design concerns — not prompt instructions added after autonomy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="state">
+  <div class="wrap">
+    <h2>Where the project actually is</h2>
+    <p class="sub">Pre-alpha, and specific about it.</p>
+    <p>
+      The Phase 0 organizational data model exists and is tested: employees, departments, grants,
+      tasks and delegation trees, typed messages, artifacts, reviews, execution resources, quota,
+      and routing decisions. A Resource Governor spike measures the escalation ladder against
+      labelled scenarios. There is no organization runtime and no released package.
+    </p>
+    <p>
+      The spike is deliberately sequenced first. The whole cost argument rests on a component that
+      decides whether a cheap answer was good enough, and published routing work suggests that
+      component generalizes poorly across task classes. Building an organization runtime on an
+      unvalidated estimator would spend the larger investment before testing the premise.
+    </p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Phase</th><th>Contents</th><th>State</th></tr></thead>
+        <tbody>
+          <tr><td>Phase 0</td><td>Organizational data model, identity, permissions, task graph, message protocol, provider abstraction, artifacts</td><td>Built and tested</td></tr>
+          <tr><td>Phase 0</td><td>Resource Governor</td><td>Spike, measured</td></tr>
+          <tr><td>Phase 1</td><td>Minimum viable organization: CEO, three managers, worker pool, local execution, CLI agent integration, review loop</td><td>Not started</td></tr>
+          <tr><td>Phase 2</td><td>Departments, dynamic hiring, persistent memory, approval workflows, performance tracking</td><td>Not started</td></tr>
+          <tr><td>Phases 3–4</td><td>Ecosystem interoperability, large organizations, learned routing</td><td>Vision</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>Frequently asked questions</h2>
+    <p class="sub">Direct answers. The full set is in the repository.</p>
+
+    <details open>
+      <summary>What is OpenEchelon?</summary>
+      <div><p>OpenEchelon is an open-source, model-agnostic runtime for structured AI organizations. It models a hierarchy of AI agents — CEO, executives, directors, managers, specialists, and workers — where each agent has a defined role, manager, permissions, memory, reasoning budget, and reporting line. The human owner gives an objective to the CEO and retains final authority over everything the organization does.</p></div>
+    </details>
+
+    <details>
+      <summary>How is this different from a multi-agent swarm?</summary>
+      <div><p>A swarm is flat: one lead agent fans work out to peer agents, usually sharing one context and one model. OpenEchelon is hierarchical, and the hierarchy carries operational meaning — information access, permissions, reasoning budgets, escalation paths, and model tier all vary by rank. In a flat swarm, ten agents on one problem tends to mean ten expensive contexts reasoning about the same thing. Here, a worker gets a bounded assignment on a cheap model, and only the levels that need judgement pay for judgement.</p></div>
+    </details>
+
+    <details>
+      <summary>Does a thousand agents mean a thousand running models?</summary>
+      <div><p>No. Logical identity is deliberately separated from execution. A logical employee exists persistently without a dedicated model process, container, GPU allocation, or running session. A thousand registered employees might mean fifty assigned and twenty actively executing against a limited pool, and one loaded local model can serve hundreds of logical workers over time.</p></div>
+    </details>
+
+    <details>
+      <summary>Which models and providers does it require?</summary>
+      <div><p>None. Local inference (Ollama, llama.cpp, OpenAI-compatible servers), CLI coding agents (Codex CLI, Claude Code, Gemini and Antigravity), and hosted APIs all sit behind adapters. OpenEchelon is designed to run meaningfully in a local-only configuration. Cloud and frontier resources enhance capability but must not define the architecture.</p></div>
+    </details>
+
+    <details>
+      <summary>How does it decide which model runs a task?</summary>
+      <div><p>A Resource Governor assigns execution resources per task, starting with the cheapest intelligence that could plausibly succeed and escalating when a sufficiency estimator judges the answer inadequate. Inputs include task complexity and importance, uncertainty and risk, remaining provider quota and reset windows, latency, local hardware availability, historical success rates, cost, concurrency, and organizational rank.</p>
+      <p>Reasoning follows the same discipline. Rank sets a ceiling on spending, never a cap on what a task needs — a task requiring more reasoning than its role permits escalates rather than running under-powered.</p></div>
+    </details>
+
+    <details>
+      <summary>What stops an agent doing something dangerous?</summary>
+      <div><p>Architectural constraints rather than a single guardrail prompt. Permissions are organizational and enforced technically where possible. Information access follows organizational need, so a worker does not receive the whole context. Sensitive external actions — sending messages, publishing, deleting data, financial transactions, production deployments — require an approval chain whose height depends on risk, up to human approval. Execution is interruptible: work can be paused, cancelled, or have its resource access revoked without waiting for an autonomous process to finish voluntarily.</p></div>
+    </details>
+
+    <details>
+      <summary>Is it a workflow builder or a chatbot wrapper?</summary>
+      <div><p>Neither, by explicit non-goal. A visual workflow editor may eventually exist as an advanced feature but must never be required for normal operation; execution plans are constructed from organizational structure, policy, and available resources. And while the default interface is a conversation with the CEO, the substance behind it is persistent identities, delegation trees, permission boundaries, artifact provenance, independent review, and resource governance.</p></div>
+    </details>
+
+    <details>
+      <summary>Is OpenEchelon usable today?</summary>
+      <div><p>Not yet. It is pre-alpha. The Phase 0 organizational data model and a Resource Governor spike exist and are tested; there is no organization runtime and no released package. The most useful contributions right now are architectural critique, prior-art analysis, and concrete proposals for the core data models and protocols.</p></div>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="https://github.com/NAME0x0/OpenEchelon">Repository</a>
+      <a href="https://github.com/NAME0x0/OpenEchelon/blob/main/docs/principles.md">Principles</a>
+      <a href="https://github.com/NAME0x0/OpenEchelon/blob/main/docs/faq.md">Full FAQ</a>
+      <a href="https://github.com/NAME0x0/OpenEchelon/tree/main/docs/adr">Decision records</a>
+      <a href="https://github.com/NAME0x0/OpenEchelon/blob/main/CONTRIBUTING.md">Contributing</a>
+      <a href="https://github.com/NAME0x0/OpenEchelon/blob/main/SECURITY.md">Security</a>
+      <a href="https://github.com/NAME0x0/OpenEchelon/discussions">Discussions</a>
+    </div>
+    <p>
+      Give an AI organization an objective. Talk to its CEO. Let the organization handle the rest.
+    </p>
+    <p>
+      OpenEchelon is licensed under the Apache License 2.0. Copyright 2026 OpenEchelon Contributors.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -349,17 +349,22 @@ Executive    -> high
 CEO          -> highest justified
 ```
 
-Actual reasoning should be:
+The role allowance is a ceiling on spending, never a cap on what the task needs. Where the task needs less than the role permits, the task wins. Where the task needs more than the role permits, the shortfall is an escalation condition, not something to silently absorb:
 
 ```text
-actual_reasoning =
-    minimum(
-        reasoning_required_by_task,
-        reasoning_allowed_by_role
+if reasoning_required_by_task <= reasoning_allowed_by_role:
+    actual_reasoning = reasoning_required_by_task
+else:
+    escalate(
+        reason         = REASONING_CEILING_EXCEEDED,
+        required       = reasoning_required_by_task,
+        role_allowance = reasoning_allowed_by_role
     )
 ```
 
 A director performing an obvious operation should not consume high reasoning merely because the role permits it.
+
+A worker facing a problem that exceeds its allowance should not attempt it at reduced reasoning and return a confident, wrong answer. It should escalate to a role whose allowance covers the requirement. Capping reasoning below what a task demands converts a resource limit into a correctness failure, and correctness failures are more expensive than the reasoning they saved. This is the same escalation contract described in Principle 20.
 
 ---
 

@@ -39,6 +39,7 @@ jobs:
             --no-progress
             --max-retries 3
             --exclude-path references
+            --exclude name0x0.github.io
             --accept 200,206,429
             .
           fail: true

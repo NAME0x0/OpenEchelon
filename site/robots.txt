@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Generative engines and AI crawlers are explicitly welcome. OpenEchelon is
+# documentation-first, and being read by a model is a legitimate use of it.
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://name0x0.github.io/OpenEchelon/sitemap.xml

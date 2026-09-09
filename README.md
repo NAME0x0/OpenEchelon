@@ -30,8 +30,10 @@ Instead of placing a handful of agents in a shared chat and calling it a swarm, 
 - [Organizational Context Compression](#organizational-context-compression) — managers as compressors
 - [Structured Communication](#structured-communication) — typed messages, not group chat
 - [Planned Architecture](#planned-architecture) and [Roadmap](#roadmap)
+- [Project State](#project-state) — what is built, what is not
 - [Frequently Asked Questions](#frequently-asked-questions) — and the full [FAQ](docs/faq.md), including how this compares to flat agent frameworks
 - [Immutable Principles](docs/principles.md) — the 40 architectural constraints that govern the design
+- [Decision Records](docs/adr) · [Phase 0](docs/architecture/phase-0.md) · [Governor spike](spikes/resource_governor)
 - [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Changelog](CHANGELOG.md)
 
 ---
@@ -97,7 +99,7 @@ Different levels have different responsibilities, permissions, information acces
                                |
                                v
 +----------------------------------------------------------------+
-|                        CEO / AVA                               |
+|                            CEO                                 |
 +------------------------------+---------------------------------+
                                |
               +----------------+----------------+
@@ -192,6 +194,8 @@ A possible organizational policy:
 | Director | Medium / High | Frontier model |
 | Executive | High | High-quality frontier model |
 | CEO | Highest justified | Best available synthesis model |
+
+These are **ceilings, not targets**. A task needing less reasoning than its role permits runs at what the task needs. A task needing *more* than its role permits escalates to a role whose allowance covers it — it is never run under-powered, because a resource limit silently converted into a wrong answer costs more than the reasoning it saved. See [Principle 7](docs/principles.md#7-reasoning-is-a-budgeted-organizational-resource).
 
 Workers should generally **execute**, not reconsider the entire strategy.
 
@@ -564,15 +568,17 @@ No single model provider should be mandatory.
 
 ### Phase 0 — Architecture
 
-- [ ] Organizational data model
-- [ ] Agent identity model
-- [ ] Hierarchical permissions
-- [ ] Task and delegation graph
-- [ ] Structured agent-message protocol
-- [ ] Provider/runtime abstraction
-- [ ] Resource Governor
-- [ ] Artifact model
-- [ ] Security boundaries
+Acceptance criteria and design notes: [`docs/architecture/phase-0.md`](docs/architecture/phase-0.md).
+
+- [x] Organizational data model
+- [x] Agent identity model
+- [x] Hierarchical permissions — modelled; enforcement is Phase 1
+- [x] Task and delegation graph
+- [x] Structured agent-message protocol
+- [x] Provider/runtime abstraction
+- [ ] Resource Governor — [spike measured](spikes/resource_governor); needs real-provider validation
+- [x] Artifact model
+- [ ] Security boundaries — policy modelled, technical enforcement not started
 
 ### Phase 1 — Minimum Viable Organization
 
@@ -687,6 +693,32 @@ An individual should eventually be able to operate research, engineering, analys
 The complexity belongs inside the organization.
 
 The user should see the result.
+
+---
+
+## Project State
+
+Pre-alpha, and specific about it.
+
+| Component | State |
+|---|---|
+| [Phase 0 organizational data model](docs/architecture/phase-0.md) | Built and tested — employees, departments, grants, tasks and delegation trees, typed messages, artifacts, reviews, execution resources, quota, routing decisions |
+| [Resource Governor](spikes/resource_governor) | Spike, measured against labelled scenarios |
+| Permission enforcement | Modelled, not enforced |
+| Organization runtime, storage, scheduler | Not started |
+| Released package | None |
+
+The implementation is Python 3.12+ ([ADR 0002](docs/adr/0002-implementation-stack.md)). Language choice binds the runtime only — an employee can still be executed by a CLI agent or service written in anything.
+
+```bash
+git clone https://github.com/NAME0x0/OpenEchelon.git
+cd OpenEchelon
+uv sync --group dev
+uv run pytest -q                                    # model + governor tests
+uv run python spikes/resource_governor/run.py       # the cost/quality measurement
+```
+
+**Why the Governor comes first.** The economic argument — cheapest sufficient intelligence, escalate when it fails — rests entirely on a component that decides whether a cheap answer was good enough. Published routing work suggests that component generalizes poorly outside the distribution it was tuned on. Building the organization runtime on an unvalidated estimator would spend the larger investment before testing the premise, so the spike is sequenced first and its results are reported honestly, including the false accept it produces. See [ADR 0003](docs/adr/0003-quality-estimation-is-the-load-bearing-component.md).
 
 ---
 
