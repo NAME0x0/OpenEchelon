@@ -1,0 +1,8 @@
+# Default owner for everything in this repository.
+*                       @NAME0x0
+
+# Architecture documents define what OpenEchelon fundamentally is.
+# Changes here require explicit maintainer review.
+/docs/principles.md     @NAME0x0
+/README.md              @NAME0x0
+/LICENSE                @NAME0x0

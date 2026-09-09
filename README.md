@@ -1,14 +1,38 @@
-﻿# OpenEchelon
+# OpenEchelon
 
 > **The operating system for AI organizations.**
 
-OpenEchelon is an open-source project for building and running structured organizations of AI agents.
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Status: pre-alpha](https://img.shields.io/badge/status-pre--alpha-orange.svg)](#roadmap)
+[![Docs CI](https://github.com/NAME0x0/OpenEchelon/actions/workflows/docs.yml/badge.svg)](https://github.com/NAME0x0/OpenEchelon/actions/workflows/docs.yml)
+[![Discussions](https://img.shields.io/badge/discussions-open-brightgreen.svg)](https://github.com/NAME0x0/OpenEchelon/discussions)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
+**OpenEchelon is a model-agnostic runtime for structured AI organizations** — hierarchical multi-agent systems where persistent AI employees operate within defined authority, permission, memory, and resource boundaries, and report ultimately to a human owner.
+
+It is an open-source project for building and running structured organizations of AI agents.
 
 Instead of placing a handful of agents in a shared chat and calling it a swarm, OpenEchelon models an actual organization: executives, directors, managers, specialists, and workers — each with defined responsibilities, authority, tools, memory, budgets, and reporting lines.
 
 **You communicate with the CEO. The organization handles the rest.**
 
 > **Status:** Pre-alpha. OpenEchelon is currently in the architecture and prototyping stage.
+
+---
+
+## Contents
+
+- [The Idea](#the-idea) — why hierarchy instead of a swarm
+- [AI Organization, Not AI Swarm](#ai-organization-not-ai-swarm) — structure and responsibilities per level
+- [Agents Are Not Models](#agents-are-not-models) — identity separated from execution
+- [The Intelligence Ladder](#the-intelligence-ladder) — cheapest sufficient intelligence
+- [Resource and Quota Governance](#resource-and-quota-governance) — treating frontier models as scarce
+- [Organizational Context Compression](#organizational-context-compression) — managers as compressors
+- [Structured Communication](#structured-communication) — typed messages, not group chat
+- [Planned Architecture](#planned-architecture) and [Roadmap](#roadmap)
+- [Frequently Asked Questions](#frequently-asked-questions) — and the full [FAQ](docs/faq.md), including how this compares to flat agent frameworks
+- [Immutable Principles](docs/principles.md) — the 40 architectural constraints that govern the design
+- [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Changelog](CHANGELOG.md)
 
 ---
 
@@ -50,7 +74,7 @@ The CEO receives the objective, delegates through the organization, monitors pro
 
 ---
 
-# AI Organization, Not AI Swarm
+## AI Organization, Not AI Swarm
 
 A typical agent swarm is relatively flat:
 
@@ -104,7 +128,7 @@ The CEO communicates with the user.
 
 ---
 
-# Agents Are Not Models
+## Agents Are Not Models
 
 OpenEchelon separates an agent's **identity** from the model used to execute its work.
 
@@ -152,7 +176,7 @@ This allows the same logical employee to use different resources depending on th
 
 ---
 
-# The Intelligence Ladder
+## The Intelligence Ladder
 
 OpenEchelon is designed around a simple principle:
 
@@ -192,7 +216,7 @@ This reduces unnecessary reasoning, context, latency, and token consumption.
 
 ---
 
-# Resource and Quota Governance
+## Resource and Quota Governance
 
 Frontier intelligence is scarce.
 
@@ -247,7 +271,7 @@ Escalation happens when required.
 
 ---
 
-# 1,000 Agents Does Not Mean 1,000 Running Models
+## 1,000 Agents Does Not Mean 1,000 Running Models
 
 OpenEchelon is intended to eventually support large logical organizations.
 
@@ -276,7 +300,7 @@ Codex, Claude, Gemini, browsers, terminals, and sandboxes can similarly operate 
 
 ---
 
-# Organizational Context Compression
+## Organizational Context Compression
 
 Not every employee should know everything.
 
@@ -315,7 +339,7 @@ The CEO should not need to ingest hundreds of thousands of tokens of raw worker 
 
 ---
 
-# Structured Communication
+## Structured Communication
 
 OpenEchelon agents should not behave like members of one enormous group chat.
 
@@ -356,7 +380,7 @@ Cross-team communication can be routed through management or explicitly authoriz
 
 ---
 
-# Example
+## Example
 
 You ask:
 
@@ -399,53 +423,53 @@ The CEO produces the final response.
 
 ---
 
-# Design Principles
+## Design Principles
 
-## 1. Executive Simplicity
+### 1. Executive Simplicity
 
 The default interface should feel like talking to one capable executive.
 
 No workflow editor should be required for normal use.
 
-## 2. Local First
+### 2. Local First
 
 Routine work should be able to execute locally with models such as those served through Ollama or llama.cpp.
 
-## 3. Model Agnostic
+### 3. Model Agnostic
 
 No employee should permanently belong to one model provider.
 
-## 4. Harness Agnostic
+### 4. Harness Agnostic
 
 CLI agents, APIs, local models, and external agent runtimes should all be valid execution resources.
 
-## 5. Hierarchical Intelligence
+### 5. Hierarchical Intelligence
 
 Greater responsibility may justify stronger models, more context, and more reasoning.
 
-## 6. Scarcity Aware
+### 6. Scarcity Aware
 
 Compute, quota, context, money, and time are resources to manage deliberately.
 
-## 7. Compartmentalized
+### 7. Compartmentalized
 
 Agents receive the context and permissions necessary for their role — not unrestricted access to the entire organization.
 
-## 8. Observable
+### 8. Observable
 
 Tasks, delegation, reports, artifacts, reviews, failures, model usage, and escalation paths should be inspectable.
 
-## 9. Interoperable
+### 9. Interoperable
 
 OpenEchelon should integrate with existing ecosystems rather than require users to abandon them.
 
-## 10. Human Authority
+### 10. Human Authority
 
 The organization ultimately reports to its human owner.
 
 ---
 
-# Intended Execution Ecosystem
+## Intended Execution Ecosystem
 
 OpenEchelon is being designed to eventually support multiple execution surfaces.
 
@@ -485,7 +509,7 @@ No single model provider should be mandatory.
 
 ---
 
-# Planned Architecture
+## Planned Architecture
 
 ```text
 +==================================================================+
@@ -536,9 +560,9 @@ No single model provider should be mandatory.
 
 ---
 
-# Roadmap
+## Roadmap
 
-## Phase 0 — Architecture
+### Phase 0 — Architecture
 
 - [ ] Organizational data model
 - [ ] Agent identity model
@@ -550,7 +574,7 @@ No single model provider should be mandatory.
 - [ ] Artifact model
 - [ ] Security boundaries
 
-## Phase 1 — Minimum Viable Organization
+### Phase 1 — Minimum Viable Organization
 
 - [ ] One CEO
 - [ ] Three managers
@@ -564,7 +588,7 @@ No single model provider should be mandatory.
 - [ ] Basic quota-aware routing
 - [ ] Executive chat interface
 
-## Phase 2 — Organization Runtime
+### Phase 2 — Organization Runtime
 
 - [ ] Departments
 - [ ] Directors and executives
@@ -578,7 +602,7 @@ No single model provider should be mandatory.
 - [ ] Model escalation policies
 - [ ] Performance tracking
 
-## Phase 3 — Ecosystem
+### Phase 3 — Ecosystem
 
 - [ ] MCP
 - [ ] ACP
@@ -589,7 +613,7 @@ No single model provider should be mandatory.
 - [ ] Plugin / skill ecosystem
 - [ ] Notification and mobile surfaces
 
-## Phase 4 — Large Organizations
+### Phase 4 — Large Organizations
 
 - [ ] Hundreds to thousands of logical employees
 - [ ] Dynamic staffing
@@ -601,7 +625,7 @@ No single model provider should be mandatory.
 
 ---
 
-# Inspiration and Research
+## Inspiration and Research
 
 OpenEchelon is being designed independently while studying the wider agent ecosystem.
 
@@ -637,7 +661,7 @@ The objective is to learn from the ecosystem and build a coherent organizational
 
 ---
 
-# What OpenEchelon Is Not
+## What OpenEchelon Is Not
 
 OpenEchelon is not intended to be:
 
@@ -652,7 +676,7 @@ It is intended to become a coordination layer capable of employing different mod
 
 ---
 
-# Long-Term Vision
+## Long-Term Vision
 
 The long-term goal is simple:
 
@@ -666,19 +690,53 @@ The user should see the result.
 
 ---
 
-# Contributing
+## Frequently Asked Questions
 
-OpenEchelon is currently in the architecture and prototyping stage.
+Short answers below. The full set lives in [`docs/faq.md`](docs/faq.md).
 
-Contribution guidelines, development setup, coding standards, and issue templates will be added as the initial runtime structure is established.
+**Is OpenEchelon usable today?**
+No. It is pre-alpha, in the architecture and prototyping stage. There is no runtime implementation and no released package.
 
-Architectural discussion, experimentation, benchmarks, provider integrations, and comparisons with existing systems are welcome.
+**How is this different from a multi-agent swarm?**
+A swarm is flat — one lead fans work out to peers, usually sharing one context and one model. OpenEchelon is hierarchical, and the hierarchy carries operational meaning: information access, permissions, reasoning budgets, escalation paths, and model tier all vary by rank. In a flat swarm, ten agents on one problem tends to mean ten expensive contexts reasoning about the same thing.
+
+**Does a thousand agents mean a thousand running models?**
+No. Logical identity is deliberately separated from execution. A thousand registered employees might mean fifty assigned and twenty actively executing against a limited pool.
+
+**Which providers does it require?**
+None. Local inference (Ollama, llama.cpp, OpenAI-compatible servers), CLI coding agents (Codex CLI, Claude Code, Gemini/Antigravity), and hosted APIs all sit behind adapters. Local-only operation is a supported target.
+
+**Is it a workflow builder or a chatbot wrapper?**
+Neither, by explicit non-goal. Execution plans are constructed from organizational structure, policy, and available resources rather than pre-wired by the user.
 
 ---
 
-# License
+## Contributing
 
-A project license will be selected before the first public implementation release.
+OpenEchelon is in the architecture and prototyping stage, which shapes what is useful to contribute. Architectural critique of [`docs/principles.md`](docs/principles.md), prior-art analysis of existing agent frameworks, and concrete proposals for the core data models and protocols are the highest-value contributions right now. Large speculative implementations are premature until the core model is frozen.
+
+Start here:
+
+- [CONTRIBUTING.md](CONTRIBUTING.md) — what to contribute, the workflow, and the bar every change must clear
+- [Discussions](https://github.com/NAME0x0/OpenEchelon/discussions) — architectural debate belongs here before it becomes an issue
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [SECURITY.md](SECURITY.md) — threat model and private vulnerability reporting
+
+Every substantive change is evaluated against the Architectural Test at the end of [`docs/principles.md`](docs/principles.md).
+
+---
+
+## License
+
+OpenEchelon is licensed under the [Apache License 2.0](LICENSE), including its explicit patent grant. See [NOTICE](NOTICE) for attribution requirements.
+
+OpenEchelon studies the wider agent ecosystem but does not vendor code from it. Projects referenced above carry their own licenses, and those are respected separately.
+
+---
+
+## Citation
+
+If you reference OpenEchelon in academic or technical work, citation metadata is in [`CITATION.cff`](CITATION.cff).
 
 ---
 

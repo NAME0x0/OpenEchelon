@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Architecture discussion
+    url: https://github.com/NAME0x0/OpenEchelon/discussions
+    about: Propose or debate organizational architecture, protocols, and design trade-offs. Most pre-alpha conversation belongs here.
+  - name: Question about the project
+    url: https://github.com/NAME0x0/OpenEchelon/discussions
+    about: Ask what OpenEchelon is, how it differs from other agent frameworks, or when something will exist.
+  - name: Report a security vulnerability
+    url: https://github.com/NAME0x0/OpenEchelon/security/advisories/new
+    about: Report privately. Never open a public issue for a vulnerability.

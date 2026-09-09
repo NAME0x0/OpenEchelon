@@ -1,0 +1,38 @@
+# OpenEchelon
+
+> OpenEchelon is an open-source, model-agnostic runtime for structured AI organizations. Instead of a flat multi-agent swarm, it models a hierarchy — CEO, executives, directors, managers, specialists, and workers — where each agent has defined authority, permissions, memory, reasoning budgets, and reporting lines. The human owner talks to the CEO and retains final authority. Agent identity is kept separate from model execution, so a single logical employee can be run by a local model, a frontier API, or a CLI coding agent depending on the task.
+
+OpenEchelon is licensed under Apache-2.0 and is currently in the architecture and prototyping stage (pre-alpha). There is no runtime implementation yet.
+
+## Definition
+
+OpenEchelon: a model-agnostic runtime for structured AI organizations where persistent agents operate within hierarchy, authority, resource, memory, and information boundaries while reporting ultimately to a human owner.
+
+## What makes it different
+
+- **Hierarchy is a first-class primitive**, not an emergent behaviour of prompts. Reporting lines, departments, delegation, escalation, and review chains are modelled explicitly.
+- **Agents are not models.** An employee is a persistent organizational identity with a role, manager, permissions, memory, and performance history. Execution resources are assigned per task by a Resource Governor.
+- **Logical agents are separate from running processes.** A thousand registered employees does not mean a thousand running models.
+- **Reasoning is a budgeted resource.** Actual reasoning is the minimum of what the task requires and what the role permits.
+- **Cheapest sufficient intelligence.** Work starts on local or inexpensive models and escalates to frontier models only when justified.
+- **Managers compress context.** Raw worker output does not propagate upward unchanged.
+- **Provider independence.** Ollama, llama.cpp, OpenAI-compatible servers, Codex CLI, Claude Code, Gemini, and API providers sit behind adapters.
+- **Security and auditability are architectural**, covering prompt injection, authority escalation, information boundaries, credential isolation, and approval gates for sensitive external actions.
+
+## Key documents
+
+- [README](https://github.com/NAME0x0/OpenEchelon/blob/main/README.md): project overview, organizational model, intelligence ladder, roadmap.
+- [Immutable principles](https://github.com/NAME0x0/OpenEchelon/blob/main/docs/principles.md): 40 architectural constraints, non-goals, and the Architectural Test applied to design decisions.
+- [FAQ](https://github.com/NAME0x0/OpenEchelon/blob/main/docs/faq.md): direct answers on what OpenEchelon is, how it compares to flat agent frameworks, and current status.
+- [Contributing](https://github.com/NAME0x0/OpenEchelon/blob/main/CONTRIBUTING.md): what is useful to contribute during the architecture stage.
+- [Security policy](https://github.com/NAME0x0/OpenEchelon/blob/main/SECURITY.md): threat model for autonomous agent runtimes and private reporting.
+
+## Status
+
+Pre-alpha, architecture and prototyping stage. Phase 0 (organizational data model, agent identity model, task and delegation graph, message protocol, provider abstraction, Resource Governor, artifact model, security boundaries) is in progress. No release has been tagged.
+
+## Optional
+
+- [Changelog](https://github.com/NAME0x0/OpenEchelon/blob/main/CHANGELOG.md)
+- [Code of Conduct](https://github.com/NAME0x0/OpenEchelon/blob/main/CODE_OF_CONDUCT.md)
+- [Citation metadata](https://github.com/NAME0x0/OpenEchelon/blob/main/CITATION.cff)

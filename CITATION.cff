@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+title: "OpenEchelon: a model-agnostic runtime for structured AI organizations"
+message: "If you reference OpenEchelon in academic or technical work, please cite it using these metadata."
+type: software
+authors:
+  - name: "OpenEchelon Contributors"
+    website: "https://github.com/NAME0x0/OpenEchelon"
+repository-code: "https://github.com/NAME0x0/OpenEchelon"
+url: "https://github.com/NAME0x0/OpenEchelon"
+abstract: >-
+  OpenEchelon is an open-source runtime for building hierarchical organizations
+  of AI agents. Rather than a flat multi-agent swarm, it models an organization
+  with a CEO, executives, directors, managers, specialists, and workers, each
+  holding defined authority, permissions, memory, reasoning budgets, and
+  reporting lines. Agent identity is separate from model execution, so the same
+  logical employee may be executed by a local model, a frontier API, or a CLI
+  coding agent depending on task difficulty and available quota. A Resource
+  Governor routes work to the cheapest intelligence that can complete it
+  reliably. The human owner retains final authority over the organization.
+keywords:
+  - ai-agents
+  - multi-agent-systems
+  - agent-orchestration
+  - agentic-ai
+  - llm-orchestration
+  - hierarchical-agents
+  - model-agnostic
+  - local-llm
+  - autonomous-agents
+  - ai-organization
+license: Apache-2.0

@@ -1,0 +1,43 @@
+name: Prior art / ecosystem comparison
+description: Point at an existing system OpenEchelon should learn from, integrate with, or deliberately differ from
+title: "[Prior art] "
+labels: ["prior-art", "research"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A stated goal of OpenEchelon is to coordinate existing ecosystems rather than rebuild them (Principles 12 and 37). Pointers to relevant prior art are genuinely useful.
+  - type: input
+    id: project
+    attributes:
+      label: Project or paper
+      placeholder: Name and URL
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License
+      description: Required. OpenEchelon will not copy code, but license context matters for any integration.
+      placeholder: Apache-2.0 / MIT / AGPL-3.0 / proprietary / N/A for a paper
+    validations:
+      required: true
+  - type: dropdown
+    id: relevance
+    attributes:
+      label: Relevance
+      options:
+        - Architecture to learn from
+        - Candidate integration (employee runtime, tool provider, or execution backend)
+        - Solves a problem OpenEchelon should not rebuild
+        - Approach OpenEchelon should deliberately avoid
+        - Benchmark or evaluation method
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: What is relevant about it
+      description: Be specific. Which design decision, and how does it map onto the OpenEchelon model?
+    validations:
+      required: true

@@ -1,0 +1,36 @@
+name: Documentation issue
+description: Report something incorrect, unclear, contradictory, or missing in the docs
+title: "[Docs] "
+labels: ["documentation"]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: File and section
+      placeholder: docs/principles.md - Principle 7, Reasoning Is a Budgeted Organizational Resource
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of issue
+      options:
+        - Factually incorrect
+        - Internally contradictory
+        - Unclear or ambiguous
+        - Missing information
+        - Broken link
+        - Typo or formatting
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: What is wrong
+      description: Quote the current text where useful.
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested correction

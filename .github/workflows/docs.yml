@@ -1,0 +1,62 @@
+name: Docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Weekly link check catches ecosystem URLs that rot between commits.
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  markdownlint:
+    name: Markdown lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: |
+            **/*.md
+            !references/**
+
+  links:
+    name: Link check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --max-retries 3
+            --exclude-path references
+            --accept 200,206,429
+            .
+          fail: true
+
+  metadata:
+    name: Repository metadata
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Required community files are present
+        run: |
+          missing=0
+          for f in README.md LICENSE NOTICE CONTRIBUTING.md CODE_OF_CONDUCT.md SECURITY.md CHANGELOG.md CITATION.cff docs/principles.md; do
+            if [ ! -f "$f" ]; then
+              echo "::error::missing required file: $f"
+              missing=1
+            fi
+          done
+          exit $missing
+      - name: CITATION.cff is valid YAML
+        run: python3 -c "import yaml,sys; yaml.safe_load(open('CITATION.cff')); print('CITATION.cff parses')"

@@ -1,4 +1,4 @@
-﻿# OpenEchelon — Immutable Principles
+# OpenEchelon — Immutable Principles
 
 > These principles define what OpenEchelon fundamentally is.
 
@@ -10,7 +10,55 @@ They are architectural constraints rather than feature ideas.
 
 ---
 
-# 1. OpenEchelon Is an Organization, Not a Swarm
+## Contents
+
+- [1. OpenEchelon Is an Organization, Not a Swarm](#1-openechelon-is-an-organization-not-a-swarm)
+- [2. The Human Owner Retains Final Authority](#2-the-human-owner-retains-final-authority)
+- [3. The Default User Interface Is Executive-Level](#3-the-default-user-interface-is-executive-level)
+- [4. Agent Identity Is Separate From Model Identity](#4-agent-identity-is-separate-from-model-identity)
+- [5. Logical Agents Are Separate From Running Processes](#5-logical-agents-are-separate-from-running-processes)
+- [6. Workers Execute; Managers Manage](#6-workers-execute-managers-manage)
+- [7. Reasoning Is a Budgeted Organizational Resource](#7-reasoning-is-a-budgeted-organizational-resource)
+- [8. Use the Cheapest Intelligence That Can Reliably Complete the Task](#8-use-the-cheapest-intelligence-that-can-reliably-complete-the-task)
+- [9. Frontier Models Are Scarce Organizational Resources](#9-frontier-models-are-scarce-organizational-resources)
+- [10. Local-First Execution Is Preferred Where Practical](#10-local-first-execution-is-preferred-where-practical)
+- [11. Models and Providers Must Be Replaceable](#11-models-and-providers-must-be-replaceable)
+- [12. External Agent Frameworks Can Be Employees or Tools](#12-external-agent-frameworks-can-be-employees-or-tools)
+- [13. Information Access Follows Organizational Need](#13-information-access-follows-organizational-need)
+- [14. Managers Are Context Compressors](#14-managers-are-context-compressors)
+- [15. Communication Is Structured](#15-communication-is-structured)
+- [16. Communication Follows Authority Paths by Default](#16-communication-follows-authority-paths-by-default)
+- [17. Delegation Creates Traceable Task Trees](#17-delegation-creates-traceable-task-trees)
+- [18. Artifacts Are First-Class Organizational Objects](#18-artifacts-are-first-class-organizational-objects)
+- [19. Reviews Should Be Organizationally Independent Where Useful](#19-reviews-should-be-organizationally-independent-where-useful)
+- [20. Failure Should Trigger Escalation, Not Endless Retry](#20-failure-should-trigger-escalation-not-endless-retry)
+- [21. Organizational Memory Is Layered](#21-organizational-memory-is-layered)
+- [22. Permissions Are Organizational, Not Merely Technical](#22-permissions-are-organizational-not-merely-technical)
+- [23. Sensitive External Actions Require Explicit Governance](#23-sensitive-external-actions-require-explicit-governance)
+- [24. Observability Is Mandatory](#24-observability-is-mandatory)
+- [25. Auditability Must Reach the Final Answer](#25-auditability-must-reach-the-final-answer)
+- [26. The Organization Should Learn From Performance](#26-the-organization-should-learn-from-performance)
+- [27. Optimization Must Consider Quality, Not Only Cost](#27-optimization-must-consider-quality-not-only-cost)
+- [28. Organizational Roles Should Be Dynamic](#28-organizational-roles-should-be-dynamic)
+- [29. Organizations May Restructure](#29-organizations-may-restructure)
+- [30. Persistent Identity Matters](#30-persistent-identity-matters)
+- [31. Execution Must Be Interruptible](#31-execution-must-be-interruptible)
+- [32. Concurrency Must Be Explicitly Controlled](#32-concurrency-must-be-explicitly-controlled)
+- [33. Simplicity at the Surface, Sophistication Underneath](#33-simplicity-at-the-surface-sophistication-underneath)
+- [34. No Mandatory Workflow Editor](#34-no-mandatory-workflow-editor)
+- [35. Security Is an Architectural Property](#35-security-is-an-architectural-property)
+- [36. OpenEchelon Must Remain Inspectable and Understandable](#36-openechelon-must-remain-inspectable-and-understandable)
+- [37. Interoperability Is More Valuable Than Reinvention](#37-interoperability-is-more-valuable-than-reinvention)
+- [38. Open Standards Are Preferred](#38-open-standards-are-preferred)
+- [39. The Core Must Be Useful Without Cloud Dependency](#39-the-core-must-be-useful-without-cloud-dependency)
+- [40. The Organization Exists to Produce Outcomes](#40-the-organization-exists-to-produce-outcomes)
+- [Non-Goals](#non-goals)
+- [Architectural Test](#architectural-test)
+- [Core Definition](#core-definition)
+
+---
+
+## 1. OpenEchelon Is an Organization, Not a Swarm
 
 OpenEchelon models structured organizations of AI agents.
 
@@ -69,7 +117,7 @@ A flat group of agents may exist inside OpenEchelon, but it is not the primary o
 
 ---
 
-# 2. The Human Owner Retains Final Authority
+## 2. The Human Owner Retains Final Authority
 
 Every OpenEchelon organization ultimately belongs to a human or authorized human group.
 
@@ -109,7 +157,7 @@ It is not sovereignty.
 
 ---
 
-# 3. The Default User Interface Is Executive-Level
+## 3. The Default User Interface Is Executive-Level
 
 The normal user should not need to coordinate individual workers.
 
@@ -150,7 +198,7 @@ Those decisions belong inside the organization unless explicitly overridden.
 
 ---
 
-# 4. Agent Identity Is Separate From Model Identity
+## 4. Agent Identity Is Separate From Model Identity
 
 An OpenEchelon employee is not a model.
 
@@ -206,7 +254,7 @@ The same employee may use different execution resources for different tasks.
 
 ---
 
-# 5. Logical Agents Are Separate From Running Processes
+## 5. Logical Agents Are Separate From Running Processes
 
 OpenEchelon must be able to represent far more employees than are actively executing.
 
@@ -238,7 +286,7 @@ This separation is required for scalability.
 
 ---
 
-# 6. Workers Execute; Managers Manage
+## 6. Workers Execute; Managers Manage
 
 Organizational rank must have operational meaning.
 
@@ -283,7 +331,7 @@ This reduces unnecessary reasoning and context consumption.
 
 ---
 
-# 7. Reasoning Is a Budgeted Organizational Resource
+## 7. Reasoning Is a Budgeted Organizational Resource
 
 Reasoning should not automatically be maximized.
 
@@ -315,7 +363,7 @@ A director performing an obvious operation should not consume high reasoning mer
 
 ---
 
-# 8. Use the Cheapest Intelligence That Can Reliably Complete the Task
+## 8. Use the Cheapest Intelligence That Can Reliably Complete the Task
 
 OpenEchelon should optimize for quality per unit of scarce resource.
 
@@ -357,7 +405,7 @@ Escalation should happen because it is justified, not because a powerful model h
 
 ---
 
-# 9. Frontier Models Are Scarce Organizational Resources
+## 9. Frontier Models Are Scarce Organizational Resources
 
 Codex, Claude, Gemini, subscription sessions, API budgets, GPU time, context windows, and concurrency are resources.
 
@@ -382,7 +430,7 @@ Resource management is part of orchestration, not an afterthought.
 
 ---
 
-# 10. Local-First Execution Is Preferred Where Practical
+## 10. Local-First Execution Is Preferred Where Practical
 
 OpenEchelon should be capable of meaningful operation using local resources.
 
@@ -406,7 +454,7 @@ Local-first does not mean local-only.
 
 ---
 
-# 11. Models and Providers Must Be Replaceable
+## 11. Models and Providers Must Be Replaceable
 
 OpenEchelon must not depend architecturally on one model company.
 
@@ -431,7 +479,7 @@ The organizational runtime should remain provider-independent.
 
 ---
 
-# 12. External Agent Frameworks Can Be Employees or Tools
+## 12. External Agent Frameworks Can Be Employees or Tools
 
 OpenEchelon should not need to replace every existing agent ecosystem.
 
@@ -459,7 +507,7 @@ OpenEchelon should coordinate useful ecosystems rather than unnecessarily duplic
 
 ---
 
-# 13. Information Access Follows Organizational Need
+## 13. Information Access Follows Organizational Need
 
 Agents should not automatically share one global context.
 
@@ -488,7 +536,7 @@ This improves:
 
 ---
 
-# 14. Managers Are Context Compressors
+## 14. Managers Are Context Compressors
 
 Raw organizational output should not propagate upward unchanged.
 
@@ -531,7 +579,7 @@ Reports should preserve references to underlying evidence so deeper inspection r
 
 ---
 
-# 15. Communication Is Structured
+## 15. Communication Is Structured
 
 OpenEchelon agents should not behave as members of one unrestricted group chat.
 
@@ -574,7 +622,7 @@ Natural-language payloads may exist inside structured messages.
 
 ---
 
-# 16. Communication Follows Authority Paths by Default
+## 16. Communication Follows Authority Paths by Default
 
 A worker should not normally contact the CEO directly.
 
@@ -609,7 +657,7 @@ The system should prevent uncontrolled agent-to-agent communication graphs.
 
 ---
 
-# 17. Delegation Creates Traceable Task Trees
+## 17. Delegation Creates Traceable Task Trees
 
 Delegation should create explicit parent-child relationships.
 
@@ -641,7 +689,7 @@ Delegation must not disappear into conversational history.
 
 ---
 
-# 18. Artifacts Are First-Class Organizational Objects
+## 18. Artifacts Are First-Class Organizational Objects
 
 Important work should not exist only as chat text.
 
@@ -681,7 +729,7 @@ The system should be able to reconstruct this chain.
 
 ---
 
-# 19. Reviews Should Be Organizationally Independent Where Useful
+## 19. Reviews Should Be Organizationally Independent Where Useful
 
 The same agent that performs work should not always be trusted to certify it.
 
@@ -721,7 +769,7 @@ Provider diversity can reduce correlated failure modes.
 
 ---
 
-# 20. Failure Should Trigger Escalation, Not Endless Retry
+## 20. Failure Should Trigger Escalation, Not Endless Retry
 
 Repeatedly asking the same resource to solve the same failed task is wasteful.
 
@@ -750,7 +798,7 @@ Retries must be deliberate.
 
 ---
 
-# 21. Organizational Memory Is Layered
+## 21. Organizational Memory Is Layered
 
 Memory should exist at multiple scopes.
 
@@ -775,7 +823,7 @@ Memory scope must be explicit.
 
 ---
 
-# 22. Permissions Are Organizational, Not Merely Technical
+## 22. Permissions Are Organizational, Not Merely Technical
 
 Access should depend on role and responsibility.
 
@@ -799,7 +847,7 @@ Technical sandboxing should enforce organizational policy where possible.
 
 ---
 
-# 23. Sensitive External Actions Require Explicit Governance
+## 23. Sensitive External Actions Require Explicit Governance
 
 Actions with meaningful external consequences should be governable.
 
@@ -842,7 +890,7 @@ The required authority depends on risk.
 
 ---
 
-# 24. Observability Is Mandatory
+## 24. Observability Is Mandatory
 
 Every meaningful execution should be inspectable.
 
@@ -872,7 +920,7 @@ An autonomous organization that cannot explain what happened is not manageable.
 
 ---
 
-# 25. Auditability Must Reach the Final Answer
+## 25. Auditability Must Reach the Final Answer
 
 The CEO's final recommendation should be traceable.
 
@@ -906,7 +954,7 @@ and inspect the chain.
 
 ---
 
-# 26. The Organization Should Learn From Performance
+## 26. The Organization Should Learn From Performance
 
 OpenEchelon should eventually learn which resources work best for which tasks.
 
@@ -937,7 +985,7 @@ The system should become economically smarter through use.
 
 ---
 
-# 27. Optimization Must Consider Quality, Not Only Cost
+## 27. Optimization Must Consider Quality, Not Only Cost
 
 The cheapest answer is not necessarily the best organizational outcome.
 
@@ -962,7 +1010,7 @@ Resource allocation should reflect expected value.
 
 ---
 
-# 28. Organizational Roles Should Be Dynamic
+## 28. Organizational Roles Should Be Dynamic
 
 OpenEchelon should not require one permanently hard-coded organization.
 
@@ -987,7 +1035,7 @@ The organizational runtime remains the same.
 
 ---
 
-# 29. Organizations May Restructure
+## 29. Organizations May Restructure
 
 Eventually, OpenEchelon should support organizational change.
 
@@ -1008,7 +1056,7 @@ These changes must remain auditable and governed.
 
 ---
 
-# 30. Persistent Identity Matters
+## 30. Persistent Identity Matters
 
 An employee should accumulate organizational history.
 
@@ -1030,7 +1078,7 @@ This allows employees to become more useful over time without requiring one perm
 
 ---
 
-# 31. Execution Must Be Interruptible
+## 31. Execution Must Be Interruptible
 
 Long-running autonomous work must remain controllable.
 
@@ -1050,7 +1098,7 @@ A human owner should not need to wait for an autonomous process to voluntarily f
 
 ---
 
-# 32. Concurrency Must Be Explicitly Controlled
+## 32. Concurrency Must Be Explicitly Controlled
 
 More simultaneous agents is not automatically better.
 
@@ -1074,7 +1122,7 @@ The Resource Governor should decide how much parallelism is justified.
 
 ---
 
-# 33. Simplicity at the Surface, Sophistication Underneath
+## 33. Simplicity at the Surface, Sophistication Underneath
 
 The internal architecture may become complex.
 
@@ -1100,7 +1148,7 @@ The organizational complexity exists to remove coordination burden from the huma
 
 ---
 
-# 34. No Mandatory Workflow Editor
+## 34. No Mandatory Workflow Editor
 
 Visual workflows may eventually be useful as an advanced feature.
 
@@ -1112,7 +1160,7 @@ The user should not need to pre-wire every possible process.
 
 ---
 
-# 35. Security Is an Architectural Property
+## 35. Security Is an Architectural Property
 
 Security cannot be added after autonomy.
 
@@ -1131,7 +1179,7 @@ Security decisions should exist in architecture, not only prompts.
 
 ---
 
-# 36. OpenEchelon Must Remain Inspectable and Understandable
+## 36. OpenEchelon Must Remain Inspectable and Understandable
 
 The project should resist unnecessary architectural complexity.
 
@@ -1148,7 +1196,7 @@ Opaque orchestration is undesirable.
 
 ---
 
-# 37. Interoperability Is More Valuable Than Reinvention
+## 37. Interoperability Is More Valuable Than Reinvention
 
 OpenEchelon should integrate mature external capabilities where doing so is better than rebuilding them.
 
@@ -1173,7 +1221,7 @@ It should not waste resources recreating every surrounding ecosystem.
 
 ---
 
-# 38. Open Standards Are Preferred
+## 38. Open Standards Are Preferred
 
 Where practical, internal and external interfaces should use documented, portable protocols.
 
@@ -1190,7 +1238,7 @@ OpenEchelon should avoid unnecessary lock-in to:
 
 ---
 
-# 39. The Core Must Be Useful Without Cloud Dependency
+## 39. The Core Must Be Useful Without Cloud Dependency
 
 OpenEchelon should remain capable of operating in a local-only configuration for supported use cases.
 
@@ -1212,7 +1260,7 @@ They should not define the architecture.
 
 ---
 
-# 40. The Organization Exists to Produce Outcomes
+## 40. The Organization Exists to Produce Outcomes
 
 Agents talking to agents is not success.
 
@@ -1238,7 +1286,7 @@ Everything else exists in service of that transformation.
 
 ---
 
-# Non-Goals
+## Non-Goals
 
 OpenEchelon is not fundamentally intended to become:
 
@@ -1254,7 +1302,7 @@ OpenEchelon is not fundamentally intended to become:
 
 ---
 
-# Architectural Test
+## Architectural Test
 
 A future OpenEchelon design decision should be questioned if it violates one or more of these conditions:
 
@@ -1286,7 +1334,7 @@ If the answer is no, the design should require strong justification.
 
 ---
 
-# Core Definition
+## Core Definition
 
 OpenEchelon can be reduced to the following statement:
 

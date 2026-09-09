@@ -1,0 +1,41 @@
+name: Bug report
+description: Something in the repository is broken (tooling, CI, links, or - later - the runtime)
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        OpenEchelon has no runtime implementation yet, so most bug reports today concern repository tooling, CI, or documentation links. Runtime fields below can be left blank until a runtime exists.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: Operating system, tooling versions, and - once a runtime exists - providers and models involved.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or output
+      render: shell

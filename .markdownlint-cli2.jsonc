@@ -1,0 +1,13 @@
+{
+  // OpenEchelon docs are prose-and-ASCII-diagram heavy. Rules that fight that
+  // are disabled deliberately rather than worked around in the documents.
+  "config": {
+    "MD013": false, // line length: prose is not hard-wrapped
+    "MD024": { "siblings_only": true }, // repeated headings under different parents are fine
+    "MD033": false, // inline HTML is used in templates
+    "MD041": false, // files may open with a blockquote or badge row
+    "MD046": false  // both fenced and indented code appear in diagrams
+  },
+  "globs": ["**/*.md"],
+  "ignores": ["references/**", "node_modules/**"]
+}

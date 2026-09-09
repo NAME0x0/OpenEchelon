@@ -1,0 +1,62 @@
+name: Architecture proposal
+description: Propose a concrete design for a core OpenEchelon component
+title: "[Proposal] "
+labels: ["architecture", "proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for concrete design proposals: data models, message protocols, permission schemes, routing policies, adapter interfaces.
+
+        For open-ended debate, use [Discussions](https://github.com/NAME0x0/OpenEchelon/discussions) instead.
+  - type: input
+    id: component
+    attributes:
+      label: Component
+      description: Which part of the architecture does this affect?
+      placeholder: Resource Governor / Organization Engine / Message protocol / Artifact store / Provider adapter
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What organizational or runtime problem does this solve? Describe the problem before the solution.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: The concrete design. Schemas, interfaces, state transitions, and ASCII diagrams are encouraged.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What else did you consider, and why is this better?
+    validations:
+      required: true
+  - type: checkboxes
+    id: architectural-test
+    attributes:
+      label: Architectural Test
+      description: "Check every condition your proposal preserves. See docs/principles.md. Unchecked boxes are not disqualifying, but explain them below."
+      options:
+        - label: Preserves human final authority
+        - label: Keeps agent identity separate from model execution
+        - label: Supports hierarchy rather than forcing flat coordination
+        - label: Allows cheap work to remain cheap
+        - label: Avoids unnecessary context sharing
+        - label: Remains observable
+        - label: Remains auditable
+        - label: Preserves provider independence
+        - label: Supports resource governance
+        - label: Scales logical identity separately from active execution
+        - label: Reduces rather than increases coordination burden on the user
+  - type: textarea
+    id: tradeoffs
+    attributes:
+      label: Trade-offs and unchecked conditions
+      description: Explain any condition above you left unchecked, and any cost this design imposes.

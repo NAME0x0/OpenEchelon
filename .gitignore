@@ -1,1 +1,42 @@
+# Local reference repositories (studied, never vendored)
 /references/
+
+# Scratch space for tooling, screenshots, and session artifacts
+/temp/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs and local databases
+*.log
+*.sqlite
+*.sqlite3
+*.db
+
+# Language build artifacts (added ahead of the first runtime implementation)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+dist/
+build/
+target/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
