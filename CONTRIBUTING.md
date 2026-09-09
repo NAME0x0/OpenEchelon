@@ -50,11 +50,13 @@ Changes to `docs/principles.md` itself are held to a higher standard. Principles
 3. **Fork and branch.** Use a descriptive branch name: `docs/message-protocol`, `proposal/resource-governor`, `fix/broken-links`.
 4. **Keep pull requests focused.** One concern per pull request. A 40-file pull request that mixes docs, formatting, and architecture will be asked to split.
 5. **Write commit messages that explain why**, not just what. [Conventional Commits](https://www.conventionalcommits.org/) format is preferred:
-   ```
+
+   ```text
    docs(principles): clarify reasoning-budget formula
    feat(governor): add quota-window tracking
    fix(links): correct MCP specification URL
    ```
+
 6. **Open the pull request** against `main`, fill in the template, and link the issue it resolves.
 
 ---

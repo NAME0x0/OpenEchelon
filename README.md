@@ -740,6 +740,6 @@ If you reference OpenEchelon in academic or technical work, citation metadata is
 
 ---
 
-**OpenEchelon**
-
-*The operating system for AI organizations.*
+> **OpenEchelon** — the operating system for AI organizations.
+>
+> Give an AI organization an objective. Talk to its CEO. Let the organization handle the rest.
