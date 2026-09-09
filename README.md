@@ -8,6 +8,8 @@
 [![Discussions](https://img.shields.io/badge/discussions-open-brightgreen.svg)](https://github.com/NAME0x0/OpenEchelon/discussions)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
+**[openechelon site &rarr;](https://name0x0.github.io/OpenEchelon/)**
+
 **OpenEchelon is a model-agnostic runtime for structured AI organizations** — hierarchical multi-agent systems where persistent AI employees operate within defined authority, permission, memory, and resource boundaries, and report ultimately to a human owner.
 
 It is an open-source project for building and running structured organizations of AI agents.
